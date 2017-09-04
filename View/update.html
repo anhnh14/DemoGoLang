@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+        <title>{{.PageTitle}}</title>
+    </head>
+    <body>
+    {{with $1 :=.Person}}
+    <form action="/confirmUpdate" method="post">
+        <input type="hidden" name="pid" value="{{$1.Id}}">
+        Name:  <input type="text" name="pname" value="{{$1.Name}}"/> <br/>
+        Age:   <input type="text" name="page" value="{{$1.Age}}"/> <br/>
+        Phone: <input type="text" name="pphone" value="{{$1.Phone}}"/> <br/>
+        <input type="submit" value="Submit"/>
+    </form>
+    {{end}}
+
+    </body>
+</html>

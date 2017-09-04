@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+
+    <title>{{.PageTitle}}</title>
+
+</head>
+
+<body>
+
+<form action="/add" method="post">
+    Name:  <input type="text" name="pname" id="name" value=""/> <br/>
+    Age:   <input type="text" id="age" name="page" value=""/> <br/>
+    Phone: <input type="text" name="pphone" value=""/> <br/>
+    <input type="button" value="Submit" id="sub"/>
+</form>
+
+{{with $3 :=.PagePersons}}
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Phone</th>
+            <th>Action</th>
+        </tr>
+        {{range $3}}
+        <tr>
+            <td>{{.Id}}</td>
+            <td>{{.Name}}</td>
+            <td>{{.Age}}</td>
+            <td>{{.Phone}}</td>
+            <td><a href="/delete/{{.Id}}">Delete</a> <a href="/update/{{.Id}}">Update</a></td>
+        </tr>
+        {{end}}
+
+    </table>
+
+{{end}}
+
+</body>
+<script>
+
+    $("#sub").click( function()
+    {
+        var age = $('#age').val();
+        var name = $('#name').val();
+        var check = $.isNumeric(age);
+        if(!check || age < 0 || name==""){
+            alert('Age must be positive number & Name must not empty');
+        }else{
+            $('form').submit();
+        }
+
+    }
+    );
+</script>
+
+</html>
